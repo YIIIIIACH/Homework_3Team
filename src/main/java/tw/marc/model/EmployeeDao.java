@@ -31,4 +31,17 @@ public class EmployeeDao {
 		return null;
 
 	}
+	public Employee getEmployeeById(Integer empId) {
+		Session session = factory.openSession();
+		
+		String hqlstr = "from Employee where employee_id=:empId";
+		Query<Employee> query = session.createQuery(hqlstr, Employee.class);
+		query.setParameter("empId", empId);
+		Employee res = query.uniqueResult();
+		if( res==null) {
+			System.out.println("can not find employee by Id");
+		}
+		session.close();
+		return res;
+	}
 }

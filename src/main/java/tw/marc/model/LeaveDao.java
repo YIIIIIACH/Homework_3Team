@@ -27,4 +27,12 @@ public class LeaveDao {
 		session.close();
 		return res;
 	}
+	
+//	@SuppressWarnings("deprecation")
+	public Boolean insertLeave(Leave l) {
+		Session sess = factory.openSession();
+		sess.save(l);
+		sess.close();
+		return true;
+	}
 }

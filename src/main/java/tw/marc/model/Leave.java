@@ -42,11 +42,13 @@ public class Leave {
 	public Leave() {
 		;
 	}
-	public Leave(Integer leave_id, Employee emp, Date leave_datetime) {
+	
+	public Leave(Integer leave_id, Employee emp, Date leave_datetime, String leave_reason) {
 		super();
 		this.leave_id = leave_id;
-		this.emp=emp;
+		this.emp = emp;
 		this.leave_datetime = leave_datetime;
+		this.leave_reason = leave_reason;
 	}
 	public Integer getLeave_id() {
 		return leave_id;
@@ -66,5 +68,15 @@ public class Leave {
 	public void setLeave_datetime(Date leave_datetime) {
 		this.leave_datetime = leave_datetime;
 	}
+	@Column(name="leave_reason",unique=true)
+	private String leave_reason;
+
+	public String getLeave_reason() {
+		return leave_reason;
+	}
+	public void setLeave_reason(String leave_reason) {
+		this.leave_reason = leave_reason;
+	}
+	
 	
 }
