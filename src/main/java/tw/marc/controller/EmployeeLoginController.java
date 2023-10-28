@@ -31,13 +31,14 @@ public class EmployeeLoginController {
 		Employee e=eDao.checkLogin(empAcc, empPwd);
 		if(e!=null) {
 			// get all leave of that emp
-			List<Leave> ll = lDao.getLeaveById(e.getEmployee_id());
-			if(ll!=null) {
-				for(Leave l: ll) {
+			List<Leave> leaves = lDao.getLeaveById(e.getEmployee_id());
+			if(leaves !=null) {
+				for(Leave l: leaves) {
 					System.out.println(l.getLeave_id()+ l.getEmployee().getEmployee_name()+ l.getLeave_datetime().toString());
 				}
+				m.addAttribute("leaves", leaves);
 			}
-			return "success";			
+			return "empLeave";			
 		}
 		return "error";
 	}
