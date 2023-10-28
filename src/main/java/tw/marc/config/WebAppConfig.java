@@ -1,5 +1,6 @@
 package tw.marc.config;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = {"tw.marc"})
 @EnableWebMvc
 public class WebAppConfig implements WebMvcConfigurer {
-	
+	private ApplicationContext applicationContext;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -31,7 +32,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-	
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver irv1 = new InternalResourceViewResolver();
