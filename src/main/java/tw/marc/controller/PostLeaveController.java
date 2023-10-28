@@ -14,6 +14,7 @@ import tw.marc.model.LeaveDao;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 @Controller
 public class PostLeaveController {
 	@Autowired
@@ -29,6 +30,13 @@ public class PostLeaveController {
 		Date ld = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(leaveDate+" "+leaveTime);
 //		System.out.println(ld);
 		lDao.insertLeave(new Leave(Integer.valueOf(empId),e, ld , leaveReason));
-		return "employeeLogin";
+		List<Leave> leaves = lDao.getLeaveById(e.getEmployee_id());
+		if(leaves !=null) {
+			for(Leave l: leaves) {
+				System.out.println(l.getLeave_id()+ l.getEmployee().getEmployee_name()+ l.getLeave_datetime().toString());
+			}
+			m.addAttribute("leaves", leaves);
+		}
+		return "empLeave";
 	}
 }
